@@ -64,14 +64,14 @@ export function Hero() {
         <motion.h1
           {...fade}
           transition={{ duration: 1.1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="display mt-4 text-5xl leading-none sm:text-6xl md:text-8xl"
+          className="display mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-5xl leading-tight sm:text-6xl md:text-7xl lg:text-8xl"
           style={{ color: '#fffdfc' }}
         >
-          {couple.groom}
-          <span className="script mx-3 align-middle text-3xl italic text-[var(--color-gold)] sm:text-4xl md:text-6xl">
+          <span>{couple.groom}</span>
+          <span className="script text-3xl italic text-gold sm:text-4xl md:text-5xl lg:text-6xl">
             &amp;
           </span>
-          {couple.bride}
+          <span className="whitespace-nowrap">{couple.bride}</span>
         </motion.h1>
 
         <motion.div
@@ -116,7 +116,7 @@ export function Hero() {
         <motion.div
           {...fade}
           transition={{ duration: 1, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-12 flex w-full max-w-xs flex-col gap-3 sm:max-w-none sm:flex-row sm:gap-4"
+          className="mt-12 flex w-full max-w-xs flex-col items-center gap-3 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4"
         >
           <a
             href="#details"
