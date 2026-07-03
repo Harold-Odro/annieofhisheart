@@ -1,0 +1,279 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   James & Annie — Luxury Wedding Experience
+   Design tokens (Tailwind v4 @theme)
+   ============================================================ */
+@theme {
+  /* Palette */
+  --color-ivory: #f8f5f0;
+  --color-champagne: #e9ddcc;
+  --color-taupe: #b7a79a;
+  --color-gold: #c8a45d;
+  --color-charcoal: #2e2e2e;
+  --color-warmwhite: #fffdfc;
+  --color-forest: #3d5945;
+  --color-burgundy: #6f263d;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-script: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Montserrat', system-ui, sans-serif;
+
+  /* Easing */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+:root {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Stop iOS Safari from auto-inflating text in landscape */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  background-color: var(--color-ivory);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  /* Remove the grey tap-flash on mobile; we use our own hover/active styles */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Comfortable touch targets — links & buttons meet the 44px guideline */
+a,
+button {
+  touch-action: manipulation;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-warmwhite);
+}
+
+/* ============================================================
+   Reusable utility classes
+   ============================================================ */
+
+/* Letter-spaced uppercase eyebrow label */
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* Section vertical rhythm */
+.section {
+  padding-block: clamp(4.5rem, 11vh, 9rem);
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* Offset anchor jumps so headings clear the fixed nav bar */
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+/* Gold hairline divider with centered diamond/leaf */
+.gold-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--color-gold);
+}
+.gold-rule::before,
+.gold-rule::after {
+  content: '';
+  height: 1px;
+  width: clamp(2.5rem, 10vw, 6rem);
+  background: linear-gradient(
+    to var(--dir, right),
+    transparent,
+    var(--color-gold)
+  );
+}
+.gold-rule::before {
+  --dir: left;
+}
+
+/* Marble texture background (procedural, no asset needed) */
+.marble {
+  background-color: var(--color-warmwhite);
+  background-image:
+    radial-gradient(
+      120% 80% at 0% 0%,
+      rgba(201, 164, 93, 0.05),
+      transparent 50%
+    ),
+    radial-gradient(
+      120% 80% at 100% 100%,
+      rgba(183, 167, 154, 0.12),
+      transparent 55%
+    ),
+    radial-gradient(
+      90% 60% at 70% 20%,
+      rgba(233, 221, 204, 0.5),
+      transparent 60%
+    );
+}
+
+/* Thin gold-bordered button */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem; /* ~48px — comfortable touch target */
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.95rem 2.1rem;
+  color: var(--color-charcoal);
+  background: transparent;
+  border: 1px solid var(--color-gold);
+  border-radius: 1px;
+  cursor: pointer;
+  transition:
+    background-color 0.5s var(--ease-soft),
+    color 0.5s var(--ease-soft),
+    letter-spacing 0.5s var(--ease-soft);
+  text-decoration: none;
+}
+.btn-gold--solid {
+  background: var(--color-gold);
+  color: var(--color-warmwhite);
+}
+.btn-gold--light {
+  color: var(--color-warmwhite);
+  border-color: rgba(255, 253, 252, 0.7);
+}
+
+/* Hover states only on devices that truly hover (desktop) — keeps
+   touch taps from leaving a "stuck" hover state on phones. */
+@media (hover: hover) {
+  .btn-gold:hover {
+    background: var(--color-gold);
+    color: var(--color-warmwhite);
+    letter-spacing: 0.26em;
+  }
+  .btn-gold--solid:hover {
+    background: transparent;
+    color: var(--color-charcoal);
+  }
+  .btn-gold--light:hover {
+    background: var(--color-warmwhite);
+    color: var(--color-charcoal);
+  }
+}
+
+/* Tactile press feedback for touch */
+.btn-gold:active {
+  background: var(--color-gold);
+  color: var(--color-warmwhite);
+}
+.btn-gold--solid:active {
+  background: var(--color-charcoal);
+}
+
+/* Display headings */
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--color-charcoal);
+  line-height: 1.05;
+}
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+}
+
+/* Subtle floating animation for decorative elements */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+/* Image placeholder shimmer (until real photos are dropped in) */
+.photo-placeholder {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, var(--color-champagne), var(--color-ivory)),
+    var(--color-champagne);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    60% 60% at 50% 40%,
+    rgba(255, 253, 252, 0.45),
+    transparent 70%
+  );
+}
+.photo-placeholder span {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-script);
+  font-size: 1.1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-taupe);
+}
