@@ -106,7 +106,7 @@ export function Nav() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-[0.7rem] font-medium uppercase tracking-[0.18em] transition-colors duration-300 hover:text-[var(--color-gold)]"
+                className="text-[0.7rem] font-medium uppercase tracking-[0.18em] transition-colors duration-300 hover:text-gold"
                 style={{ color: solid ? 'var(--color-charcoal)' : '#fffdfc' }}
               >
                 {l.label}

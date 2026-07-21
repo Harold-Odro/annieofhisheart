@@ -20,7 +20,7 @@ export function Gallery() {
   const [active, setActive] = useState(null)
 
   return (
-    <section id="gallery" className="section bg-[var(--color-warmwhite)]">
+    <section id="gallery" className="section bg-warmwhite">
       <div className="container">
         <SectionHeading
           eyebrow="Pre-Wedding & Engagement"
@@ -50,7 +50,7 @@ export function Gallery() {
         </div>
 
         <Reveal delay={0.1}>
-          <p className="script mt-10 text-center text-lg italic text-[var(--color-taupe)]">
+          <p className="script mt-10 text-center text-lg italic text-taupe">
             #AnnieOfHisHeart
           </p>
         </Reveal>
@@ -60,7 +60,7 @@ export function Gallery() {
       <AnimatePresence>
         {active !== null && (
           <motion.div
-            className="fixed inset-0 z-[60] flex items-center justify-center p-6"
+            className="fixed inset-0 z-60 flex items-center justify-center p-6"
             style={{ backgroundColor: 'rgba(46,46,46,0.88)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -68,7 +68,7 @@ export function Gallery() {
             onClick={() => setActive(null)}
           >
             <motion.div
-              className="photo-placeholder aspect-[3/4] w-full max-w-md"
+              className="photo-placeholder aspect-3/4 w-full max-w-md"
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}

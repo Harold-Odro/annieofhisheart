@@ -6,17 +6,17 @@ import { mapsHref, downloadICS } from '../lib/calendar'
 function DetailCard({ title, time, venue, note, delay }) {
   return (
     <Reveal delay={delay}>
-      <article className="marble relative h-full border border-[var(--color-gold)]/30 px-8 py-12 text-center">
+      <article className="marble relative h-full border border-gold/30 px-8 py-12 text-center">
         <p className="eyebrow">{event.dateLabel}</p>
         <h3 className="display mt-4 text-3xl">{title}</h3>
         <div className="gold-rule mt-5" aria-hidden />
-        <p className="script mt-5 text-2xl text-[var(--color-charcoal)]">
+        <p className="script mt-5 text-2xl text-charcoal">
           {time}
         </p>
-        <p className="mt-3 text-sm uppercase tracking-[0.18em] text-[var(--color-taupe)]">
+        <p className="mt-3 text-sm uppercase tracking-[0.18em] text-taupe">
           {venue}
         </p>
-        <p className="mx-auto mt-5 max-w-xs text-sm leading-relaxed text-[var(--color-charcoal)]/80">
+        <p className="mx-auto mt-5 max-w-xs text-sm leading-relaxed text-charcoal/80">
           {note}
         </p>
       </article>
@@ -26,7 +26,7 @@ function DetailCard({ title, time, venue, note, delay }) {
 
 export function Details() {
   return (
-    <section id="details" className="section bg-[var(--color-ivory)]">
+    <section id="details" className="section bg-ivory">
       <div className="container">
         <SectionHeading
           eyebrow="The Celebration"

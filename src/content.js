@@ -82,6 +82,58 @@ export const dressCode = {
   notAllowed: ['Traditional outfits', 'Neon colours'],
 }
 
+/**
+ * Outfit inspiration boards. Each group renders its own gallery of looks
+ * under the Dress Code section. Image paths are served from /public/images.
+ */
+export const dressInspiration = [
+  {
+    id: 'her',
+    label: 'For Her',
+    caption: 'Elegant evening gowns for the ladies',
+    images: [
+      '/images/women inspo 1.jpg',
+      '/images/women inspo 2.jpg',
+      '/images/women inspo 3.jpg',
+      '/images/women inspo 4.jpg',
+    ],
+  },
+  {
+    id: 'him',
+    label: 'For Him',
+    caption: 'Sharp black-tie & formal suits for the gentlemen',
+    images: [
+      '/images/men inspo 1.jpg',
+      '/images/men inspo 2.jpg',
+      '/images/men inspo 3.jpg',
+      '/images/men inspo 4.jpg',
+    ],
+  },
+  {
+    id: 'mothers',
+    label: 'For the Mothers',
+    caption: 'Regal lace looks for our mothers & aunties',
+    images: [
+      '/images/mom inspo 1.jpg',
+      '/images/mom inspo 2.jpg',
+      '/images/mom inspo 3.jpg',
+      '/images/mom inspo 4.jpg',
+    ],
+  },
+  {
+    id: 'fascinators',
+    label: 'Fascinators',
+    caption: 'Statement headpieces to complete the look',
+    images: [
+      '/images/fasci inspo 1.jpg',
+      '/images/fasci inspo 2.jpg',
+      '/images/fasci inspo 3.jpg',
+      '/images/fasci inspo 4.jpg',
+      '/images/fasci inspo 5.jpg',
+    ],
+  },
+]
+
 export const paletteSwatches = [
   { name: 'Black', hex: '#1a1a1a' },
   { name: 'Champagne', hex: '#e9ddcc' },

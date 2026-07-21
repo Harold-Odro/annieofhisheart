@@ -1,8 +1,12 @@
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { SectionHeading } from '../components/SectionHeading'
 import { Reveal } from '../components/Reveal'
-import { dressCode, paletteSwatches } from '../content'
+import { dressCode, dressInspiration, paletteSwatches } from '../content'
 
 export function DressCode() {
+  const [lightbox, setLightbox] = useState(null)
+
   return (
     <section id="dresscode" className="section bg-[var(--color-ivory)]">
       <div className="container">
@@ -12,32 +16,46 @@ export function DressCode() {
           subtitle={dressCode.theme}
         />
 
-        {/* Inspiration placeholders */}
-        <div className="grid gap-6 sm:grid-cols-2">
-          <Reveal>
-            <figure>
-              <div className="photo-placeholder aspect-[3/4]">
-                <span>Women’s Inspiration</span>
+        {/* Inspiration boards */}
+        <div className="space-y-16">
+          {dressInspiration.map((group) => (
+            <div key={group.id}>
+              <Reveal>
+                <div className="text-center">
+                  <h3 className="display text-2xl sm:text-3xl">{group.label}</h3>
+                  <p className="mt-2 text-xs uppercase tracking-[0.22em] text-[var(--color-taupe)]">
+                    {group.caption}
+                  </p>
+                </div>
+              </Reveal>
+
+              <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+                {group.images.map((src, i) => (
+                  <Reveal key={src} delay={(i % 4) * 0.06}>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setLightbox({ src, label: group.label })
+                      }
+                      className="photo-placeholder group aspect-[3/4] w-full overflow-hidden rounded-sm ring-1 ring-[var(--color-gold)]/20"
+                      aria-label={`Open ${group.label} inspiration ${i + 1}`}
+                    >
+                      <img
+                        src={src}
+                        alt={`${group.label} outfit inspiration ${i + 1}`}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </button>
+                  </Reveal>
+                ))}
               </div>
-              <figcaption className="mt-3 text-center text-xs uppercase tracking-[0.22em] text-[var(--color-taupe)]">
-                For Her
-              </figcaption>
-            </figure>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <figure>
-              <div className="photo-placeholder aspect-[3/4]">
-                <span>Men’s Inspiration</span>
-              </div>
-              <figcaption className="mt-3 text-center text-xs uppercase tracking-[0.22em] text-[var(--color-taupe)]">
-                For Him
-              </figcaption>
-            </figure>
-          </Reveal>
+            </div>
+          ))}
         </div>
 
         {/* Guidelines */}
-        <div className="mt-14 grid gap-6 sm:grid-cols-2">
+        <div className="mt-16 grid gap-6 sm:grid-cols-2">
           <Reveal>
             <div className="marble h-full border border-[var(--color-gold)]/30 p-8">
               <h3 className="display text-2xl">Encouraged</h3>
@@ -99,6 +117,39 @@ export function DressCode() {
           </Reveal>
         </div>
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            className="fixed inset-0 z-60 flex items-center justify-center p-6"
+            style={{ backgroundColor: 'rgba(46,46,46,0.88)' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightbox(null)}
+          >
+            <motion.img
+              src={lightbox.src}
+              alt={`${lightbox.label} inspiration`}
+              className="max-h-[85vh] w-auto max-w-full rounded-sm object-contain shadow-2xl"
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button
+              type="button"
+              className="absolute right-6 top-6 text-warmwhite/80 hover:text-warmwhite"
+              aria-label="Close"
+              onClick={() => setLightbox(null)}
+            >
+              <span className="text-2xl">×</span>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
