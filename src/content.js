@@ -198,14 +198,14 @@ export const registry = {
   // TODO: replace placeholders with real details before launch
   mobileMoney: {
     label: 'Mobile Money',
-    value: 'XXX XXX XXXX', // TODO
-    name: 'Account Name', // TODO
+    value: '0246239561', // TODO
+    name: 'Annie Gyameah Bervell', // TODO
   },
   bank: {
     label: 'Bank Transfer',
-    bankName: 'Bank Name', // TODO
-    accountName: 'Account Name', // TODO
-    accountNumber: 'XXXX XXXX XXXX', // TODO
+    bankName: 'Ghana Commercial Bank (GCB)', // TODO
+    accountName: 'Annie Gyameah Bervell', // TODO
+    accountNumber: '1731010027053', // TODO
   },
   registryLink: '', // TODO: optional external registry URL
 }
