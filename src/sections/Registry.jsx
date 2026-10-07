@@ -31,10 +31,10 @@ export function Registry() {
               <p className="eyebrow">{registry.bank.label}</p>
               <p className="display mt-4 text-xl">{registry.bank.bankName}</p>
               <p className="mt-2 text-sm text-[var(--color-charcoal)]/80">
-                {registry.bank.accountName}
+                {registry.bank.accountNumber}
               </p>
               <p className="mt-1 text-sm text-[var(--color-taupe)]">
-                {registry.bank.accountNumber}
+                {registry.bank.accountName}
               </p>
             </div>
           </Reveal>
