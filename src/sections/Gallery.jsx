@@ -8,16 +8,17 @@ import { Reveal } from '../components/Reveal'
  * `span` values create an asymmetric magazine-style layout.
  */
 const tiles = [
-  { id: 1, span: 'sm:col-span-2 sm:row-span-2', ratio: 'aspect-square' },
-  { id: 2, span: '', ratio: 'aspect-[3/4]' },
-  { id: 3, span: '', ratio: 'aspect-[3/4]' },
-  { id: 4, span: 'sm:col-span-2', ratio: 'aspect-[16/10]' },
+  { id: 1, span: 'sm:col-span-2 sm:row-span-2', ratio: 'aspect-square', src: '/images/wedpic1.JPG' },
+  { id: 2, span: '', ratio: 'aspect-[3/4]', src: '/images/wedpic2.JPG' },
+  { id: 3, span: '', ratio: 'aspect-[3/4]', src: '/images/wedpic3.JPG' },
+ /*  { id: 4, span: 'sm:col-span-2', ratio: 'aspect-[16/10]' },
   { id: 5, span: '', ratio: 'aspect-[3/4]' },
-  { id: 6, span: '', ratio: 'aspect-[3/4]' },
+  { id: 6, span: '', ratio: 'aspect-[3/4]' },*/
 ]
 
 export function Gallery() {
   const [active, setActive] = useState(null)
+  const activeTile = tiles.find((t) => t.id === active)
 
   return (
     <section id="gallery" className="section bg-warmwhite">
@@ -41,9 +42,18 @@ export function Gallery() {
                 className={`photo-placeholder group w-full ${tile.ratio} overflow-hidden`}
                 aria-label={`Open photo ${tile.id}`}
               >
-                <span className="transition-transform duration-700 group-hover:scale-105">
-                  Photo {tile.id}
-                </span>
+                {tile.src ? (
+                  <img
+                    src={tile.src}
+                    alt={`Photo ${tile.id}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                ) : (
+                  <span className="transition-transform duration-700 group-hover:scale-105">
+                    Photo {tile.id}
+                  </span>
+                )}
               </button>
             </Reveal>
           ))}
@@ -68,14 +78,22 @@ export function Gallery() {
             onClick={() => setActive(null)}
           >
             <motion.div
-              className="photo-placeholder aspect-3/4 w-full max-w-md"
+              className="photo-placeholder aspect-3/4 w-full max-w-md overflow-hidden"
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
-              <span>Photo {active}</span>
+              {activeTile?.src ? (
+                <img
+                  src={activeTile.src}
+                  alt={`Photo ${active}`}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <span>Photo {active}</span>
+              )}
             </motion.div>
             <button
               type="button"
